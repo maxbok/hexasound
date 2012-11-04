@@ -71,12 +71,40 @@ body {
 }
 
 #logo {
-	position: fixed;
-	top: 10px;
-	left: 18%;
+	display: inline;
+	position: absolute;
+	top: 12px;
 	z-index: 20;
+	width: 160px;
+	height: 160px;
 	background: url("../images/logo.png") no-repeat;
-	padding: 100px 100px 0 0;
+	opacity: 0;
+	-webkit-transition: opacity 0.4s;
+/*	-webkit-animation: rotation 6s linear infinite;*/
+}
+
+@keyframes rotation {
+	from {-webkit-transform:rotate(0deg);}
+	to {-webkit-transform:rotate(60deg);}
+}
+
+@-moz-keyframes rotation /* Firefox */ {
+	from {-webkit-transform:rotate(0deg);}
+	to {-webkit-transform:rotate(60deg);}
+}
+
+@-webkit-keyframes rotation /* Safari and Chrome */ {	
+	from {-webkit-transform:rotate(0deg);}
+	to {-webkit-transform:rotate(60deg);}
+}
+
+@-o-keyframes rotation /* Opera */ {
+	from {-webkit-transform:rotate(0deg);}
+	to {-webkit-transform:rotate(60deg);}
+}
+
+#logo:hover {
+/*	-webkit-animation: rotation 6s linear infinite;*/
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -302,7 +330,7 @@ Full-Width Styles
 .inner {
   position: relative;
   max-width: 640px;
-  padding: 20px 10px;
+  padding: 10px 10px 20px;
   margin: 0 auto;
 }
 
@@ -312,10 +340,17 @@ Full-Width Styles
   top: 0px;
   right: 10px;
   z-index: 10;
-  padding: 75px 200px 0px 0px;
   color: #fff;
+  width: 200px;
+  height: 75px;
   background: url('../images/app_store.png') no-repeat;
   border-radius:0 0 10px 10px;
+  box-shadow: #111 0px 0px 10px;
+  -webkit-box-shadow: #111 0px 0px 10px;
+  -moz-box-shadow: #111 0px 0px 10px;
+  -o-box-shadow: #111 0px 0px 10px;
+  -ms-box-shadow: #111 0px 0px 10px;
+
 /*  font-weight: 700;
   box-shadow: 0 0 10px rgba(0,0,0,.5);
   border-bottom-left-radius: 2px;
@@ -347,20 +382,21 @@ Full-Width Styles
 }
 
 #header_wrap .inner {
-  padding: 50px 10px 30px 10px;
+  padding: 40px 10px;
 }
 
 #project_title {
   margin: 0;
+  margin-bottom: 10px;
   color: #fff;
   font-size: 42px;
   font-weight: 700;
   text-shadow: #111 0px 0px 10px;
 }
 
-#project_tagline a {
+#project_tagline {
   color: #fff;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 300;
   background: none;
   text-shadow: #111 0px 0px 10px;
@@ -412,10 +448,6 @@ Full-Width Styles
   border-bottom: 1px solid #111;
 }
 
-#main_content {
-  padding-top: 40px;
-}
-
 #footer_wrap {
   background: #212121;
 }
@@ -442,6 +474,17 @@ Small Device Styles
 
   #project_title {
   font-size: 32px;
+  }
+
+  #project_tagline {
+	font-size: 16px;
+  }
+
+  #app_store {
+	width: 150px;
+	height: 56px;
+	background: url('../images/app_store_small.png') no-repeat;
+	border-radius:0 0 10px 10px;
   }
 
   h1 {

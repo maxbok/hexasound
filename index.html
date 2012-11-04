@@ -7,20 +7,27 @@
     <meta name="description" content="HexASound : " />
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+	<script type="text/javascript" src="javascripts/main.js"></script>
 
     <title>HexASound</title>
+
+	<script>
+	window.onresize = function() {
+	    resize();
+	};
+	</script>
   </head>
 
-  <body>
+  <body onload="resize()">
 
     <!-- HEADER -->
     <div id="header_wrap" class="outer">
         <header class="inner">
-		<!--div id="logo"></div-->
-	      <!--a id="app_store" href=""></a-->
+		<div id="logo"></div>
+	      <!-- <a id="app_store" href="https://itunes.apple.com/us/app/hexasound/id575637780?ls=1&mt=8"></a> -->
     
           <h1 id="project_title">HexASound</h1>
-          <h2 id="project_tagline"><a href="mailto:max@hexasound.com">Maxime Bokobza</a></h2>
+          <a id="project_tagline" href="mailto:max@hexasound.com">Maxime Bokobza</a>
 
         </header>
     </div>
@@ -32,7 +39,6 @@
 		<ul>
 			<li><a href="#description">Description</a></li>
 			<li><a href="#videos">Videos</a></li>
-			<li><a href="#screenshots">Screenshots</a></li>
 		</ul>
 	
 		<h2 id="description">Description</h2>
@@ -53,9 +59,6 @@
 		</ul>
 		
 		<h2 id="videos">Videos</h2>
-		<p>Coming soon.</p>
-
-		<h2 id="screenshots">Screenshots</h2>
 		<p>Coming soon.</p>
 		
       </section>
