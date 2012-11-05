@@ -518,3 +518,41 @@ Small Device Styles
   }
 
 }
+
+/** Retina **/
+
+@media
+(min--moz-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2),
+(-webkit-min-device-pixel-ratio: 2),
+(min-device-pixel-ratio: 2),
+(min-resolution: 2dppx) {
+	
+	#logo {
+		background-image: url("../images/logo@2x.png");
+		background-size: 160px 160px;
+	}
+	
+	#app_store {
+		background-image: url('../images/app_store@2x.png');
+		background-size: 200px 75px;
+	  }
+
+	#main_content_wrap {
+	  	background-image: url('../images/background@2x.png');
+		background-size: 300px 260px;
+	}
+}
+
+@media
+screen and (max-width: 480px) and (-webkit-min-device-pixel-ratio: 1.5),
+screen and (max-width: 480px) and (-o-min-device-pixel-ratio: 3/2),
+screen and (max-width: 480px) and (min--moz-device-pixel-ratio: 1.5),
+screen and (max-width: 480px) and (min-device-pixel-ratio: 1.5) {
+	
+	#app_store {
+		background-image: url('../images/app_store_small@2x.png');
+		background-size: 150px 56px;
+	  }
+	
+}
