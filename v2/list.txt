@@ -1,0 +1,27 @@
+TODO
+
+http://www.fiftythree.com/paper
+
+Header: logo, HexASound, tabs, app_store
+Footer: © 2012 moi, feature request, bug report, github pages
+
+Tabs:
+Overview: //description, slideshow (ipad / iphone), video
+
+tuto, filters
+
+
+Play
+Make music through those hexagons.
+A brand new keyboard layout especially crafted for multi-touch screens.
+Seasoned musicians or beginners 
+/* Amazing. */
+
+
+Create / Build / Make
+Real-time Customization.
+
+
+
+bring out, put out
+Powerful Edition.

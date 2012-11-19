@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>HexASound</title>
+	<!-- Bootstrap -->
+	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href="css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
+	<link href="css/main.css" rel="stylesheet" media="screen"></link>
+</head>
+<body onscroll="scroll()" onload='load()'>
+	<div class="wrapper">
+
+		<!-- NavBar -->
+		<div id="navigation_bar" class="navbar navbar-inverse navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<ul class="nav">
+						<li><img id="logo" src="img/logo_small.png" /></li>
+						<li id="title">HexASound</li>
+					</ul>
+					<div id="app_store" class="pull-right">
+						<a href="https://itunes.apple.com/us/app/hexasound/id575637780?ls=1&mt=8">
+							<img src="img/app_store.svg">
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Overview -->
+		<div class="overview-wrapper">
+			<div class="overview">
+				<div class="overview-inner">
+					<div class="overview-container">
+						<div id="main_logo"><img src="img/logo.png"></div>
+						<div id="main_title">HexASound</div>
+						<div id="overview_app_store">
+							<a href="https://itunes.apple.com/us/app/hexasound/id575637780?ls=1&mt=8">
+								<img src="img/app_store.svg">
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="overview-left"></div>
+			<div class="overview-right"></div>
+			<div class="overview-center"></div>
+		</div>
+
+		<!-- Features -->
+		<div class="container feature_section">
+			<div class="feature_section_inner">
+				<div class="span3">
+					<div class="feature_image">
+						<img src="img/pads.png" />
+					</div>
+					<h2>Play</h2>
+					<p>
+						<span class="feature_title">Let the hexagons groove.</span><br />
+						A brand new keyboard layout especially crafted for multi-touch screens. Seasoned musicians or beginners adopt it.
+					</p>
+				</div>
+				<div class="span3">
+					<div class="feature_image">
+						<div class="button_0">
+							<div class="filter_button" id="pitch_button"></div>
+						</div>
+						<div class="button_1">
+							<div class="filter_button" id="disto_button"></div>
+						</div>
+						<div class="button_2">
+							<div class="filter_button" id="lead_button"></div>
+						</div>
+						<div class="button_3">
+							<div class="filter_button" id="octaver_button"></div>
+						</div>
+					</div>
+					<h2>Tweak</h2>
+					<p>
+						<span class="feature_title">Real-time Customization.</span><br />
+						Make the sound fit you're favorite tunes. Apply set filters with the live panel.
+					</p>
+				</div>
+				<div class="span3">
+					<div class="feature_image" id="waveform">
+						<div class="button_0">
+							<div class="waveform_button_wrapper">
+								<div class="waveform_button" id="square_button"></div>
+							</div>
+						</div>
+						<div class="button_1">
+							<div class="waveform_button_wrapper">
+								<div class="waveform_button" id="sinus_button"></div>
+							</div>
+						</div>
+						<div class="button_2">
+							<div class="waveform_button_wrapper">
+								<div class="waveform_button" id="sawtooth_button"></div>
+							</div>
+						</div>
+						<div class="button_3">
+							<div class="waveform_button_wrapper">
+								<div class="waveform_button" id="triangle_button"></div>
+							</div>
+						</div>
+					</div>
+					<h2>Shape</h2>
+					<p>
+						<span class="feature_title">A powerful edition tool inside.</span><br />
+						Create the sound you want with the advanced filters and settings.
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="push"></div>
+
+	</div>
+
+	<!-- Footer -->
+	<div id="footer">
+		<div class="container">
+			<ul class="pull-left" id="footer_inner">
+				<li>&copy;2012, <a href="mailto:max@hexasound.com">Maxime Bokobza</a></li>
+				<li><a href="mailto:max@hexasound.com?subject=Feature request">Feature request</a></li>
+				<li><a href="mailto:max@hexasound.com?subject=Bug report">Bug report</a></li>
+			</ul>
+			<div id="github" class="pull-right">Published with <a href="http://pages.github.com">GitHub Pages</a></div>
+		</div>
+	</div>
+
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/main.js"></script>
+	<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-36419115-1']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+
+	</script>
+</body>
+</html>
