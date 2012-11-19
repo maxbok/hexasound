@@ -95,12 +95,30 @@ a:hover {
 }
 
 #overview_app_store {
-	padding-top: 100px;
+	padding-top: 75px;
 	padding-left: 40px;
+}
+
+#overview_app_store img {
+	height: 60px;
 }
 
 .overview-wrapper, .overview-left, .overview-right, .overview-center {
 	height: 590px;
+}
+
+.overview_separator {
+	position: absolute;
+	top: 585px;
+	width: 100%;
+	height: 5px;
+
+	background-image: -moz-linear-gradient(top, rgba(250, 250, 250, 0), #FAFAFA);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(250, 250, 250, 0)), to(#FAFAFA));
+	background-image: -webkit-linear-gradient(top, rgba(250, 250, 250, 0), #FAFAFA);
+	background-image: -o-linear-gradient(top, rgba(250, 250, 250, 0), #FAFAFA);
+	background-image: linear-gradient(to bottom, rgba(250, 250, 250, 0), #FAFAFA);
+	background-repeat: repeat-x;
 }
 
 .overview-wrapper {
@@ -359,12 +377,17 @@ ul#footer_inner li {
 }
 
 @media (min-width:980px) and (max-width: 1199px) {
+	.feature_image {
+		height: 108px;
+	}
+	
 	.button_0, .button_1, .button_2, .button_3 {
 		position: absolute;
 		height: 50px;
 		width: 108px;
 	}
-		.button_1, .button_3 {
+	
+	.button_1, .button_3 {
 		left: 108px;
 	}
 
@@ -390,6 +413,10 @@ ul#footer_inner li {
 
 	.span3 {
 		width: 186px;
+	}
+	
+	.feature_image {
+		height: 92px;
 	}
 
 	.button_0, .button_1, .button_2, .button_3 {
@@ -486,6 +513,10 @@ ul#footer_inner li {
 		padding: 0px 10px 0px 5px !important;
 	}
 	
+	.overview_separator {
+		top: 395px;
+	}
+	
 	.overview-wrapper, .overview-left, .overview-right, .overview-center {
 		height: 400px;
 	}
@@ -502,11 +533,33 @@ ul#footer_inner li {
 	#main_title {
 		font-size: 6em;
 	}
+	
+	#overview_app_store {
+		padding-top: 10px;
+		padding-left: 20px;
+	}
+	
+	#overview_app_store img {
+		height: 50px;
+	}
 }
 
 @media (max-width: 767px) {
+	#title {
+		font-size: 2em;
+	}
+	
 	#main_title {
 		font-size: 5em;
+	}
+
+	#overview_app_store {
+		padding-top: 20px;
+		padding-left: 20px;
+	}
+	
+	#overview_app_store img {
+		height: 40px;
 	}
 	
 	.navbar-inner {
@@ -514,22 +567,21 @@ ul#footer_inner li {
 		padding: 0px 30px 0px 25px !important;
 	}
 	
+	.feature_section {
+	 	width: auto;
+		padding: 0 20px;
+	}
+	
 	.feature_image {
 		margin-top: 40px;
-		height: 67px;
-		overflow: hidden;
 	}
 	
-	.button_2 {
-		left: 268px;
+	ul#footer_inner li {
+		display: block;
 	}
 	
-	.button_3 {
-		left: 402px;
-	}
-
-	.button_2, .button_3 {
-		top: 0;
+	#footer {
+		height: auto;
 	}
 }
 
