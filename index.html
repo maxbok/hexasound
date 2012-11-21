@@ -1,77 +1,148 @@
 <!DOCTYPE html>
 <html>
+<head>
+	<title>HexASound</title>
+	<!-- Bootstrap -->
+	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href="css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
+	<link href="css/main.css" rel="stylesheet" media="screen"></link>
+</head>
+<body onscroll="scroll()" onload='load()'>
+	<div class="wrapper">
 
-  <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="HexASound : " />
+		<!-- NavBar -->
+		<div id="navigation_bar" class="navbar navbar-inverse navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<ul class="nav">
+						<li><div id="logo"></div></li>
+						<li id="title">HexASound</li>
+					</ul>
+					<div id="app_store" class="pull-right">
+						<a href="https://itunes.apple.com/us/app/hexasound/id575637780?ls=1&mt=8">
+							<img src="img/app_store.svg">
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-	<script type="text/javascript" src="javascripts/main.js"></script>
+		<!-- Overview -->
+		<div class="overview-wrapper">
+			<div class="overview">
+				<div class="overview-inner">
+					<div class="overview-container">
+						<div id="main_logo"></div>
+						<div id="main_title">HexASound</div>
+						<div id="overview_app_store">
+							<a href="https://itunes.apple.com/us/app/hexasound/id575637780?ls=1&mt=8">
+								<img src="img/app_store.svg">
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="overview-left"></div>
+			<div class="overview-right"></div>
+			<div class="overview-center"></div>
+			<div class="overview_separator"></div>
+		</div>
 
-    <title>HexASound</title>
+		<!-- Features -->
+		<div class="container feature_section">
+			<div class="feature_section_inner">
+				<div class="span3">
+					<canvas class="feature_image" id="pads"></canvas>
+					<h2>Play</h2>
+					<p>
+						<span class="feature_title">Let the hexagons groove.</span><br />
+						A brand new keyboard layout especially crafted for multi-touch screens.
+					</p>
+				</div>
+				<div class="span3">
+					<div class="feature_image">
+						<div class="button_0">
+							<div class="filter_button" id="pitch_button"></div>
+						</div>
+						<div class="button_1">
+							<div class="filter_button" id="disto_button"></div>
+						</div>
+						<div class="button_2">
+							<div class="filter_button" id="lead_button"></div>
+						</div>
+						<div class="button_3">
+							<div class="filter_button" id="octaver_button"></div>
+						</div>
+					</div>
+					<h2>Tweak</h2>
+					<p>
+						<span class="feature_title">Real-time Customization.</span><br />
+						Make the sound fit your favorite tunes. Apply set filters with the live panel.
+					</p>
+				</div>
+				<div class="span3">
+					<div class="feature_image" id="waveform">
+						<div class="button_0">
+							<div class="waveform_button_wrapper">
+								<div class="waveform_button" id="square_button"></div>
+							</div>
+						</div>
+						<div class="button_1">
+							<div class="waveform_button_wrapper">
+								<div class="waveform_button" id="sinus_button"></div>
+							</div>
+						</div>
+						<div class="button_2">
+							<div class="waveform_button_wrapper">
+								<div class="waveform_button" id="sawtooth_button"></div>
+							</div>
+						</div>
+						<div class="button_3">
+							<div class="waveform_button_wrapper">
+								<div class="waveform_button" id="triangle_button"></div>
+							</div>
+						</div>
+					</div>
+					<h2>Shape</h2>
+					<p>
+						<span class="feature_title">A powerful edition tool inside.</span><br />
+						Create the sound you want with the advanced filters and settings.
+					</p>
+				</div>
+			</div>
+		</div>
 
-	<script>
-	window.onresize = function() {
-	    resize();
-	};
-	</script>
-  </head>
+		<div class="push"></div>
 
-  <body onload="resize()">
+	</div>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-		<div id="logo"></div>
-	      <!-- <a id="app_store" href="https://itunes.apple.com/us/app/hexasound/id575637780?ls=1&mt=8"></a> -->
-    
-          <h1 id="project_title">HexASound</h1>
-          <a id="project_tagline" href="mailto:max@hexasound.com">Maxime Bokobza</a>
+	<!-- Footer -->
+	<div id="footer">
+		<div class="container">
+			<ul class="pull-left" id="footer_inner">
+				<li>&copy;2012, <a href="mailto:max@hexasound.com">Maxime Bokobza</a></li>
+				<li><a href="mailto:max@hexasound.com?subject=Feature request">Feature request</a></li>
+				<li><a href="mailto:max@hexasound.com?subject=Bug report">Bug report</a></li>
+			</ul>
+			<div id="github" class="pull-right">Published with <a href="http://pages.github.com">GitHub Pages</a></div>
+		</div>
+	</div>
 
-        </header>
-    </div>
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/main.js"></script>
+	<script type="text/javascript">
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-		<h2>Summary</h2>
-		<ul>
-			<li><a href="#description">Description</a></li>
-			<li><a href="#videos">Videos</a></li>
-		</ul>
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-36419115-1']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
 	
-		<h2 id="description">Description</h2>
-
-		<p>HexASound turns your iPad, iPhone, and iPod touch into a multi-tone generator instrument. The unusual keyboard layout, based on hexagons, has been especially crafted for multi-touch devices. It allows you to easily play any kind of tune in a bounded screen.</p>
-
-		<p>If you are new to music, learning would not usually have been that simple. The listing of usual scales and chords helps you see the patterns in the music thanks to the geometrical layout.</p>
-		
-		<p>If you are a seasoned musician, HexASound can be used as an instrument in its own right or as a tool to help you transpose your favorite patterns.</p>
-
-
-		<ul>
-			<lh>HexASound highlights</lh>
-			<li>Easy transposition</li>
-			<li>Scalable keyboard layout</li>
-			<li>Many sound filters</li>
-			<li>Real-time sound customization</li>
-		</ul>
-		
-		<h2 id="videos">Videos</h2>
-		<p>Coming soon.</p>
-		
-      </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p>Published with <a id="github_pages" href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
-    
-
-  </body>
+	</script>
+</body>
 </html>
