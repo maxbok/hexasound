@@ -48,14 +48,14 @@ function scroll() {
 function animate(e) {
 	var width = document.body.offsetWidth;
 	var offset;
-	if (width >= 980 && width < 1200) {
-		offset = 30;
-	} else if (width >= 768) {
-		offset = 26;
-	} else {
+	if (width > 1200) {
 		offset = 40;
+	} else if (width >= 980) {
+		offset = 30;
+	} else {
+		offset = 26;
 	}
-				
+
 	$(e).data('animating', true);
 	$(e).animate({
 		left: '-=' + offset
@@ -91,8 +91,8 @@ function loadPads() {
 								padWidth,
 								padHeight);
 				column++;
-			} while((column - 1) * padWidth + horizontalOffset < canvas.offsetWidth);
+			} while((column - 2) * padWidth + horizontalOffset < canvas.offsetWidth);
 			row++;
-		} while(row * padHeight * 3/4 + verticalOffset < canvas.offsetHeight);
+		} while((row - 1) * padHeight * 3/4 + verticalOffset < canvas.offsetHeight);
 	};
 }

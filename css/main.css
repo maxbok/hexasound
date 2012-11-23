@@ -208,14 +208,22 @@ background-repeat: repeat-y;
 
 .feature_image {
 	position: relative;
-	height: 134px;
+	width:100%;
+	height: 126px;
+}
+
+#pads {
+	width:100%;
+	height: 100%;
+	box-shadow: 0 1px 0 #333 inset, 1px 0 0 #333 inset, 0 -1px 0 #333 inset, -1px 0 0 #333 inset;
 }
 
 .button_0, .button_1, .button_2, .button_3 {
 	position: absolute;
 	height: 62px;
 	width: 134px;
-	border: 1px solid #333;
+	border: 1px solid #333;	
+	
 	float: left;
 	color: #ffffff;
 	text-align: center;
@@ -242,7 +250,7 @@ background-repeat: repeat-y;
 }
 
 .button_2, .button_3 {
-	top: 63px;
+	top: 62px;
 }
 
 .filter_button {
@@ -390,7 +398,7 @@ ul#footer_inner li {
 
 @media (min-width:980px) and (max-width: 1199px) {
 	.feature_image {
-		height: 108px;
+		height: 102px;
 	}
 	
 	.button_0, .button_1, .button_2, .button_3 {
@@ -438,7 +446,7 @@ ul#footer_inner li {
 	}
 	
 	.feature_image {
-		height: 92px;
+		height: 86px;
 	}
 
 	.button_0, .button_1, .button_2, .button_3 {
@@ -546,7 +554,7 @@ ul#footer_inner li {
 	}
 	
 	.overview_separator {
-		top: 395px;
+		top: 393px;
 	}
 	
 	.overview-wrapper, .overview-left, .overview-right, .overview-center {
@@ -555,19 +563,20 @@ ul#footer_inner li {
 	
 	.overview {
 		position:relative;
-		top:40px;
-	}
-	
-	#overview_app_store {
-		padding-top: 0px;
+		top:60px;
 	}
 	
 	#main_title {
 		font-size: 6em;
 	}
 	
+	#main_logo {
+		height: 160px;
+		background-size: 160px;
+	}
+	
 	#overview_app_store {
-		padding-top: 10px;
+		padding-top: 0px;
 		padding-left: 20px;
 	}
 	
@@ -606,6 +615,10 @@ ul#footer_inner li {
 	
 	.feature_image {
 		margin-top: 40px;
+	}
+	
+	#pads {
+		width: 270px;
 	}
 	
 	ul#footer_inner li {
