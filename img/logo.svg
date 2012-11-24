@@ -24,17 +24,7 @@ width="140px" height="140px" viewBox="0 0 140 140" enable-background="new 0 0 14
            L 70 110
            L 35.4 90
            L 35.4 50
-           Z">
-
-<animateTransform   id="animation"
-                    attributeName="transform"
-                    type="rotate"
-                    from="0 70 70"
-                    to="60 70 70"
-                    dur="3.6s"
-                    repeatDur="indefinite"/>
-
-</path>
+           Z" />
 </defs>
 
 <!-- Clip -->
