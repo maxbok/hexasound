@@ -1,3 +1,5 @@
+var oldWindowSize;
+
 function load() {
 	$('.waveform_button').hover(
 	    function() {
@@ -13,8 +15,19 @@ function load() {
 	// Load pads
 	loadPads();
 	
-	// Logo
-	loadLogo();
+	// Logos
+	loadLogo('');
+	
+	loadLogo('main_');
+	
+	oldWindowSize = $(window).width();
+	$(window).resize(function(){
+		if (($(window).width() >= 980 && oldWindowSize < 980) ||
+			($(window).width() < 980 && oldWindowSize >= 980)) {
+			loadLogo('main_');
+		}
+		oldWindowSize = $(window).width();
+	});
 }
 
 function scroll() {
@@ -101,7 +114,7 @@ function loadPads() {
 	};
 }
 
-function loadLogo() {
+function loadLogo(prefix) {
 	var logoPath = "M 0 60 \
 					A 60 60 0 0 0 120 60 \
 					A 60 60 0 1 0 0 60 \
@@ -113,24 +126,23 @@ function loadLogo() {
 					L 25.4 40 \
 					Z";
 	
-	var logoDiv = document.getElementById('main_logo');
-	var height = logoDiv.offsetHeight;
-	var paper = Raphael("main_logo", height, height);
-		
-	var scaleRatio = (height - 20) / 120;
-	var offset = ((height - 20) - 120) / 2 + 10;
-		
-	var shadow = paper.path(logoPath);
+	var height = $('#' + prefix + 'logo').height();
+	var margin = prefix === '' ? 8 : 20;
+	var scaleRatio = (height - margin) / 120;
+	var offset = (height - 120) / 2;
+	var shadowOffset = prefix === '' ? 2 : 4;
+	
+	// Shadow
+	$('#' + prefix + 'logo_shadow').empty();
+	var shadowPaper = Raphael(prefix + "logo_shadow", height, height);
+	var shadow = shadowPaper.path(logoPath);
 	shadow.attr({stroke: "none", fill: "#000", opacity: ".5"});
-	shadow.blur(3);
-	shadow.translate(4 + offset, 4 + offset);
-	shadow.scale(scaleRatio, scaleRatio);
-
-	var logo = paper.path(logoPath);
+	shadow.attr({transform: "t" + (offset + shadowOffset) + "," + (offset + shadowOffset) + "s" + scaleRatio + "," + scaleRatio});
+		
+	// Logo
+	$('#' + prefix + 'logo').empty();
+	var logoPaper = Raphael(prefix + "logo", height, height);
+	var logo = logoPaper.path(logoPath);
 	logo.attr({stroke: "none", fill: "90-#184166-#368FE3"});
 	logo.attr({transform: "t" + offset + "," + offset + "s" + scaleRatio + "," + scaleRatio});
-	
-	// var fullLogo = paper.set();
-	// fullLogo.push(shadow, logo);
-	// fullLogo.animate({transform: "t" + offset + "," + offset + "s" + scaleRatio + "," + scaleRatio + "r60"}, 1000, 'bounce');
 }

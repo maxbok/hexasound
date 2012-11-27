@@ -53,11 +53,25 @@ a:hover {
 	-ms-transition: top .4s;
 }
 
-#logo {
-	width: 52px;
+#logo_wrapper, #logo, #logo_shadow {
+	width: 60px;
 	height: 60px;
-	background: url('../img/logo_small.png') no-repeat center center;
-	background-size: 52px;
+}
+
+#logo_wrapper {
+	position: relative;
+}
+
+#logo, #logo_shadow {
+	position: absolute;
+}
+
+#logo_shadow {
+	filter: blur(3px);
+	-webkit-filter: blur(3px);
+	   -moz-filter: blur(3px);
+		-ms-filter: blur(3px);
+		 -o-filter: blur(3px);
 }
 
 #app_store {
@@ -86,15 +100,29 @@ a:hover {
 	-ms-transition: opacity 0.5s ease;
 }
 
-#main_logo {
-	margin-bottom: 25px;
-	width: 100%;
+#main_logo_wrapper, #main_logo, main_logo_shadow {
+	width: 200px;
 	height: 200px;
-	text-align: center;
-/*	background: url('../img/logo.svg') no-repeat center center;*/
-/*	background-size: 200px;*/
 }
 
+#main_logo_wrapper {
+	position: relative;
+	margin: 0 auto 25px;
+}
+
+#main_logo {
+	position: absolute;
+}
+
+#main_logo_shadow {
+	position: absolute;
+	
+	filter: blur(3px);
+	-webkit-filter: blur(3px);
+	   -moz-filter: blur(3px);
+		-ms-filter: blur(3px);
+		 -o-filter: blur(3px);
+}
 #main_title {
 /*	color: #f2f2f2;*/
 	font-size: 7.5em;
@@ -571,9 +599,9 @@ ul#footer_inner li {
 		font-size: 6em;
 	}
 	
-	#main_logo {
+	#main_logo_wrapper, #main_logo, main_logo_shadow {
+		width: 160px;
 		height: 160px;
-		background-size: 160px;
 	}
 	
 	#overview_app_store {
