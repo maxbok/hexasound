@@ -1,3 +1,8 @@
+var PAD_WIDTH = 64;
+var PAD_HEIGHT = 80;
+var GLOBAL_I = -1;
+var GLOBAL_J = -1;
+
 var oldWindowSize;
 
 function load() {
@@ -14,6 +19,19 @@ function load() {
 
 	// Load pads
 	loadPads();
+
+	// $('#pads').hover(
+	// 	function(e) {
+	// 		selectedPad(e);
+	// 	},
+	// 	function() {
+	// 		clearSelectedPad();
+	// 	}
+	// );
+	// 
+	// $('#pads').mousemove(function(e) {
+	// 	selectedPad(e);
+	// });
 	
 	// Logos
 	loadLogo('');
@@ -93,25 +111,71 @@ function loadPads() {
 	img.src = "img/pad.png";
 	
 	img.onload = function() {	
-		var padWidth = 60;
-		var padHeight = 69;
-	
 		var row = 0;
 		do {
 			var column = 0;
-			var verticalOffset = -padHeight * 3/4;
-			var horizontalOffset = (row%2 == 0) ? -padWidth / 2 : 0;
+			var verticalOffset = -PAD_HEIGHT * 3/4;
+			var horizontalOffset = (row%2 == 0) ? -PAD_WIDTH / 2 : 0;
 			do {
 				ctx.drawImage(	img,
-								column * padWidth + horizontalOffset,
-								row * padHeight * 3/4 + verticalOffset,
-								padWidth,
-								padHeight);
+								column * PAD_WIDTH + horizontalOffset,
+								row * PAD_HEIGHT * 3/4 + verticalOffset,
+								PAD_WIDTH,
+								PAD_HEIGHT);
 				column++;
-			} while((column - 2) * padWidth + horizontalOffset < canvas.offsetWidth);
+			} while((column - 2) * PAD_WIDTH + horizontalOffset < canvas.offsetWidth);
 			row++;
-		} while((row - 1) * padHeight * 3/4 + verticalOffset < canvas.offsetHeight);
+		} while((row - 1) * PAD_HEIGHT * 3/4 + verticalOffset < canvas.offsetHeight);
 	};
+}
+
+function selectedPad(e) {
+	var canvas = document.getElementById("selected_pad");
+	var ctx = canvas.getContext("2d");
+	var img = new Image();
+	img.src = "img/selected_pad.png";
+	var p = $('#pads').parent().position();
+	
+	var xOffsets = [PAD_WIDTH, PAD_WIDTH / 2];
+
+	var j = Math.floor((e.pageY - p.top + PAD_HEIGHT * 1.5) / (PAD_HEIGHT * 1.5));
+	var i = Math.floor((e.pageX - p.left + xOffsets[j%2] - PAD_WIDTH / 2) / PAD_WIDTH);
+
+    var xRelative = (e.pageX - p.left - (i * PAD_WIDTH - (j%2 == 0 ? xOffsets[1] : 0))) * PAD_HEIGHT / (PAD_WIDTH / 2) * .5;
+    var yRelative = e.pageY - p.top - (j - 1) * 1.5 * PAD_HEIGHT;
+
+    if (yRelative < 0.5*PAD_HEIGHT - xRelative) {
+        j--;
+        i -= j%2;
+    } else if (yRelative < xRelative - 0.5*PAD_HEIGHT) {
+        j--;
+        i += 1 - j%2;
+    }
+	
+	if (GLOBAL_I != i || GLOBAL_J != j) {
+		GLOBAL_I = i;
+		GLOBAL_J = j;
+		clearSelectedPad();
+	}
+	
+	img.onload = function() {
+		ctx.drawImage(	img,
+						i*PAD_WIDTH,
+						j*PAD_HEIGHT,
+						PAD_WIDTH,
+						PAD_HEIGHT);
+	}
+}
+
+function clearSelectedPad() {
+	var canvas = document.getElementById("selected_pad");
+	canvas.getContext("2d").clearRect(	0,
+										0,
+										$('#selected_pad').width() + 30,
+										$('#selected_pad').height() + 30);
+										
+	GLOBAL_I = -1;
+	GLOBAL_J = -1;
 }
 
 function loadLogo(prefix) {
