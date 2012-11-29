@@ -3,7 +3,8 @@ var PAD_HEIGHT = 80;
 var GLOBAL_I = -1;
 var GLOBAL_J = -1;
 
-var oldWindowSize;
+var oldLogoSize;
+var oldMainLogoSize;
 
 function load() {
 	$('.waveform_button').hover(
@@ -35,16 +36,20 @@ function load() {
 	
 	// Logos
 	loadLogo('');
-	
 	loadLogo('main_');
 	
-	oldWindowSize = $(window).width();
+	oldLogoSize = $('#logo').height();
+	oldMainLogoSize = $('#main_logo').height();
 	$(window).resize(function(){
-		if (($(window).width() >= 980 && oldWindowSize < 980) ||
-			($(window).width() < 980 && oldWindowSize >= 980)) {
-			loadLogo('main_');
+		if ($('#logo').height() != oldLogoSize) {
+			loadLogo('');
+			oldLogoSize = $('#logo').height();
 		}
-		oldWindowSize = $(window).width();
+
+		if ($('#main_logo').height() != oldMainLogoSize) {
+			loadLogo('main_');
+			oldMainLogoSize = $('#main_logo').height();
+		}
 	});
 }
 

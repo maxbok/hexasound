@@ -74,8 +74,9 @@ a:hover {
 		 -o-filter: blur(3px);
 }
 
-#app_store {
+#app_store, #app_store a {
 	line-height: 60px;
+	height: 60px;
 }
 
 #title {
@@ -100,7 +101,7 @@ a:hover {
 	-ms-transition: opacity 0.5s ease;
 }
 
-#main_logo_wrapper, #main_logo, main_logo_shadow {
+#main_logo_wrapper, #main_logo, #main_logo_shadow {
 	width: 200px;
 	height: 200px;
 }
@@ -595,7 +596,6 @@ ul#footer_inner li {
 	}
 	
 	.overview {
-		position:relative;
 		top:60px;
 	}
 	
@@ -619,6 +619,15 @@ ul#footer_inner li {
 }
 
 @media (max-width: 767px) {
+	#logo_wrapper {
+		margin-left: -10px;
+		margin-top: 5px;
+	}
+
+	#logo_wrapper, #logo, #logo_shadow {
+		height: 50px;
+	}
+
 	#title {
 		font-size: 2em;
 	}
@@ -665,17 +674,8 @@ ul#footer_inner li {
 }
 
 @media (max-width: 394px) {
-	#logo_wrapper, #logo, #logo_shadow {
-		height: 50px;
-	}
-	
-	#logo_wrapper {
-		margin-left: -10px;
-		margin-top: 5px;
-	}
-	
 	#title {
-		font-size: 1.6em;
+		font-size: 1.8em;
 		margin-left: -20px;
 	}
 	
@@ -683,9 +683,8 @@ ul#footer_inner li {
 		font-size: 4em;
 	}
 
-	#app_store {
-		line-height: 60px;
-		width: 100px;
+	#app_store img {
+		height: 30px;
 	}
 
 	#overview_app_store {
@@ -721,5 +720,83 @@ ul#footer_inner li {
 	
 	#footer {
 		height: auto;
+	}
+}
+
+/** iPhone Portrait 3"5 **/
+@media (width: 320px) and (height: 356px) {
+	.overview-wrapper, .overview-left, .overview-right, .overview-center {
+		height: 356px;
+	}
+
+	.overview_separator {
+		top: 348px;
+	}
+
+	.overview {
+		top:40px;
+	}
+
+	#main_logo_wrapper {
+		position: relative;
+		margin: 0 auto;
+	}
+}
+
+/** iPhone Portrait 4" **/
+@media (width: 320px) and (height: 444px) {
+	.overview-wrapper, .overview-left, .overview-right, .overview-center {
+		height: 444px;
+	}
+
+	.overview_separator {
+		top: 436px;
+	}
+
+	.overview {
+		top:60px;
+	}
+
+	#main_logo_wrapper, #main_logo, #main_logo_shadow {
+		width: 200px;
+		height: 200px;
+	}
+
+	#main_logo_wrapper {
+		position: relative;
+		margin: 0 auto;
+	}
+
+	#overview_app_store {
+		padding-top: 45px;
+	}
+}
+
+/** iPhone Landscape **/
+@media (height: 320px) {
+	#title {
+		font-size: 2em;
+		margin-left: -20px;
+	}
+
+	.overview-wrapper, .overview-left, .overview-right, .overview-center {
+		height: 320px;
+	}
+
+	.overview_separator {
+		top: 312px;
+	}
+
+	.overview {
+		top:15px;
+	}
+
+	#main_logo_wrapper {
+		position: relative;
+		margin: 0 auto;
+	}
+
+	#overview_app_store {
+		padding-top: 5px;
 	}
 }
