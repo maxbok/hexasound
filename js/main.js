@@ -3,8 +3,7 @@ var PAD_HEIGHT = 80;
 var GLOBAL_I = -1;
 var GLOBAL_J = -1;
 
-var oldLogoSize;
-var oldMainLogoSize;
+var oldLogoSize, oldMainLogoSize, oldWaveformButtonSize;
 
 function load() {
 	$('.waveform_button').hover(
@@ -29,7 +28,7 @@ function load() {
 	// 		clearSelectedPad();
 	// 	}
 	// );
-	// 
+	
 	// $('#pads').mousemove(function(e) {
 	// 	selectedPad(e);
 	// });
@@ -40,6 +39,8 @@ function load() {
 	
 	oldLogoSize = $('#logo').height();
 	oldMainLogoSize = $('#main_logo').height();
+	oldWaveformButtonSize = $('#square_button').width();
+
 	$(window).resize(function(){
 		if ($('#logo').height() != oldLogoSize) {
 			loadLogo('');
@@ -50,7 +51,14 @@ function load() {
 			loadLogo('main_');
 			oldMainLogoSize = $('#main_logo').height();
 		}
+
+		if ($('#square_button').width() != oldWaveformButtonSize) {
+			loadWaves();
+			oldWaveformButtonSize = $('#square_button').width();
+		}
 	});
+
+	loadWaves();
 }
 
 function scroll() {
@@ -87,12 +95,10 @@ function scroll() {
 
 function animate(e) {
 	var width = document.body.offsetWidth;
-	var offset;
-	if (width > 1200) {
-		offset = 40;
-	} else if (width >= 980) {
+	var offset = 40;
+	if (width < 1200 && width >= 980) {
 		offset = 30;
-	} else {
+	} else if (width < 980 && width >= 767) {
 		offset = 26;
 	}
 
@@ -107,6 +113,13 @@ function animate(e) {
 			$(e).data('animating', false);
 		}
 	});
+}
+
+function loadWaves() {
+	var waveforms = ['square', 'sinus', 'sawtooth', 'triangle'];
+	for (var i in waveforms) {
+		waveform(waveforms[i]);
+	}
 }
 
 function loadPads() {
@@ -141,20 +154,21 @@ function selectedPad(e) {
 	img.src = "img/selected_pad.png";
 	var p = $('#pads').parent().position();
 	
-	var xOffsets = [PAD_WIDTH, PAD_WIDTH / 2];
+	var xOffsets = [0, PAD_WIDTH / 2];
 
-	var j = Math.floor((e.pageY - p.top + PAD_HEIGHT * 1.5) / (PAD_HEIGHT * 1.5));
-	var i = Math.floor((e.pageX - p.left + xOffsets[j%2] - PAD_WIDTH / 2) / PAD_WIDTH);
+	var j = Math.floor((e.pageY - p.top) / (PAD_HEIGHT * .75 * .9));
+	var i = Math.floor((e.pageX - p.left + xOffsets[j%2]) / (PAD_WIDTH * .9));
 
-    var xRelative = (e.pageX - p.left - (i * PAD_WIDTH - (j%2 == 0 ? xOffsets[1] : 0))) * PAD_HEIGHT / (PAD_WIDTH / 2) * .5;
-    var yRelative = e.pageY - p.top - (j - 1) * 1.5 * PAD_HEIGHT;
+    var xRelative = (e.pageX - p.left - (i * PAD_WIDTH - xOffsets[j%2])) * PAD_HEIGHT / (PAD_WIDTH / 2) * .5 * .9;
+    var yRelative = e.pageY - p.top - (j - 1) * .25 * PAD_HEIGHT;
 
-    if (yRelative < 0.5*PAD_HEIGHT - xRelative) {
+    var coef = 1;
+    if (yRelative < .5 * PAD_HEIGHT - xRelative) {
         j--;
-        i -= j%2;
-    } else if (yRelative < xRelative - 0.5*PAD_HEIGHT) {
+        i -= (j+3)%2;
+    } else if (yRelative < xRelative - 0.5 * PAD_HEIGHT) {
         j--;
-        i += 1 - j%2;
+        i += 1 - (j+3)%2;
     }
 	
 	if (GLOBAL_I != i || GLOBAL_J != j) {
@@ -165,8 +179,8 @@ function selectedPad(e) {
 	
 	img.onload = function() {
 		ctx.drawImage(	img,
-						i*PAD_WIDTH,
-						j*PAD_HEIGHT,
+						i * PAD_WIDTH - xOffsets[(j + 2)%2],
+						j * PAD_HEIGHT * .75,
 						PAD_WIDTH,
 						PAD_HEIGHT);
 	}
@@ -215,3 +229,79 @@ function loadLogo(prefix) {
 	logo.attr({stroke: "none", fill: "90-#184166-#368FE3"});
 	logo.attr({transform: "t" + offset + "," + offset + "s" + scaleRatio + "," + scaleRatio});
 }
+
+function waveform(waveform) {
+	var path, offsetW;
+	var button = waveform + "_button";
+	var p = $('#' + button).position();
+	var width = $('#' + button).width();
+	var height = $('#' + button).height();
+	var waveH = (height * .5).toFixed(0);
+	var waveW = (width / 8).toFixed(0);
+
+	switch(waveform) {
+		case 'square':
+		path = "M 0 " + waveH;
+		var waveNumber = 8;
+		for (var i = 0; i < waveNumber; i+=2) {
+			path += "L " + (i * waveW) + " " + waveH;
+			path += "L " + ((i + 1) * waveW) + " " + waveH;
+			path += "L " + ((i + 1) * waveW) + " 0";
+			path += "L " + ((i + 2) * waveW) + " 0";
+		};
+		path += "L " + (waveNumber * waveW) + " " + waveH;
+		path += "L " + ((waveNumber + 1) * waveW) + " " + waveH;
+		offsetW = -(waveW * .5).toFixed(0);
+
+		break;
+
+		case 'sinus':
+		path = "M 0 " + (waveH * .5).toFixed(0);
+		var offsetH = parseInt((waveH / 4)).toFixed(0);
+		var offsetV = parseInt((waveH / 4).toFixed(0)) - 2;
+		var curveH = parseInt(waveH) + parseInt(offsetV);
+		var waveNumber = 8;
+		for (var i = 0; i < waveNumber; i+=2) {
+			path += "C " + (parseInt(i * waveW) + parseInt(offsetH)) + ",-" + offsetV + " " +
+						   (parseInt((i + 1) * waveW) - parseInt(offsetH)) + ",-" + offsetV + " " +
+						   ((i + 1) * waveW) + "," + (waveH * .5).toFixed(0);
+			path += "C " + (parseInt((i + 1) * waveW) + parseInt(offsetH)) + "," + curveH + " " +
+						   (parseInt((i + 2) * waveW) - parseInt(offsetH)) + "," + curveH + " " +
+						   ((i + 2) * waveW) + "," + (waveH * .5).toFixed(0);
+		};
+		offsetW = 0;
+
+		break;
+
+		case 'sawtooth':
+		path = "M -" + (waveW * .5).toFixed(0) + " " + waveH;
+		var waveNumber = 8;
+		for (var i = 0; i < waveNumber; i+=2) {
+			path += "L " + ((i + 1.5) * waveW) + " 0";
+			path += "L " + ((i + 1.5) * waveW) + " " + waveH;
+		};
+		path += "L " + ((waveNumber + 1.5) * waveW) + " " + 0;
+		offsetW = -(waveW * .5).toFixed(0);
+
+		break;
+
+		case 'triangle':
+		path = "M 0 " + waveH;
+		var waveNumber = 8;
+		for (var i = 0; i < waveNumber; i+=2) {
+			path += "L " + (i * waveW) + " " + waveH;
+			path += "L " + ((i + 1) * waveW) + " 0";
+		};
+		path += "L " + (waveNumber * waveW) + " " + waveH;
+		offsetW = -(waveW * .5).toFixed(0);
+
+		break;
+	}
+
+	var wavePaper = Raphael(button, width, height);
+	var wave = wavePaper.path(path);
+	wave.attr({	stroke: "#FFF",
+				fill: "none",
+				transform: "t" + offsetW + "," + ((height - waveH) * .5).toFixed(0) });
+}
+
